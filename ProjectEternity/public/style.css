@@ -1,0 +1,134 @@
+@import "form.css" all;
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Ubuntu&display=swap'); 
+
+
+/* 
+.error {
+    color: rgb(0, 253, 72);
+    font-size: 25px;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+      sans-serif;
+  } */
+
+.div-error{
+    display: inline-flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
+    align-content: center;
+
+}
+.error {
+  
+    font-family: 'Josefin Sans', sans-serif;
+    color : rgb(255, 38, 38);
+    font-size: 11px;
+}
+.error:nth-child(1) {
+    position: relative;
+    bottom: 435px;
+    right: 170px;
+    display: block;
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: auto;
+    align-self: center;
+    order: 0;
+
+
+}
+
+.error:nth-child(2) {
+    position: relative;
+    bottom: 360px;
+    right: 170px;
+    display: block;
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: auto;
+    align-self: center;
+    order: 0;
+}
+
+.error:nth-child(3) {
+    position: relative;
+    bottom: 285px;
+    right: 170px;
+    display: block;
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: auto;
+    align-self: center;
+    order: 0;
+}
+
+.error:nth-child(4) {
+    position: relative;
+    bottom: 210px;
+    right: 170px;
+    display: block;
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: auto;
+    align-self: center;
+    order: 0;    
+}
+.error:nth-child(5) {
+    position: relative;
+    bottom: 140px;
+    right: 170px;
+    display: block;
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: auto;
+    align-self: center;
+    order: 0;
+}
+
+.error:nth-child(6) {
+    position: relative;
+    bottom: 60px;
+    right: 170px;
+    display: block;
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: auto;
+    align-self: center;
+    order: 0;
+}
+
+.button-post {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: bold;
+    position: relative;
+    right: 180px;
+    color: #14396a43 !important;
+    font-size: 20px;
+    text-shadow: 0px 0px 0px #7CACDE;
+    box-shadow: 0px 0px 0px #BEE2F9;
+    padding: 8px 40px;
+    border-radius: 10px;
+    border: 0px solid #3866A3;
+    background: #CBEDCE;
+  }
+  .button-post:hover {
+    color: #3D3D3D !important;
+    background: #D1D1D1;
+  }
+  
+  img {
+    width: 30%;
+    position: absolute;
+    left: 600px;
+    bottom:80px;
+    border-top-right-radius:50px ;
+    border-bottom-left-radius: 50px;
+  }
+
+  h1 {
+    position: absolute;
+    left: 600px;
+    top:25px;
+  }

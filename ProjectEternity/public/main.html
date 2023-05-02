@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Document</title>
+  <style>
+  
+  </style>
+</head>
+
+<body>
+  <form action="/userPost" method="post" class="inp">
+    
+    <div class="flex-items">
+      <input type="text" name="first_name" id="first_name" placeholder="&nbsp;" />
+      <span class="label label-firstName">First Name</span>
+      <span class="focus-bg"></span>
+
+    </div>
+
+    
+    <div class="flex-items">
+      <input type="text" name="last_name" id="last_name" placeholder="&nbsp;" />
+      <span class="label label-lastName">Last Name</span>
+      <span class="focus-bg"></span>
+      
+    </div>
+    
+    <div class="flex-items">
+      <input type="text" name="username" id="username" placeholder="&nbsp;" />
+      <span class="label label-username">Username</span>
+      <span class="focus-bg"></span>
+    
+    </div>
+   
+    <div class="flex-items">
+      <input type="email" name="email" id="email" placeholder="&nbsp;" />
+      <span class="label label-email">Email</span>
+      <span class="focus-bg"></span>
+     
+    </div>
+    
+    <div class="flex-items">
+      <input type="password" name="password" id="password" placeholder="&nbsp;" />
+      <span class="label label-password">Password</span>
+      <span class="focus-bg"></span>
+      
+    </div>
+
+    <div class="flex-items">
+      <input type="password" name="confirm-password" id="confirm-password" placeholder="&nbsp;" />
+      <span class="label label-confirmPassword">Confirm Password</span>
+      <span class="focus-bg"></span>
+      
+    </div>
+    
+
+
+    <div class="div-error">
+      <span class="error" id="first-nameError"></span>
+      <span class="error" id="last-nameError"></span>
+      <span class="error" id="usernameError"></span>
+      <span class="error" id="emailError"></span>
+      <span class="error" id="passwordError"></span>
+      <span class="error" id="confirm-passwordError"></span>
+    </div>
+    <button class="button-post" type="submit" id="POST">Post</button>
+    <img src="https://images.unsplash.com/photo-1505118380757-91f5f5632de0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=626&q=80" alt="oops">
+  <h1>Welcome to our Sing-Up</h1>
+  </form>
+  
+  </body>
+<script>
+  const postBtn = document.getElementById("POST");
+  const input_first_name = document.getElementById("first_name");
+  const input_last_name = document.getElementById("last_name");
+  const input_username = document.getElementById("username");
+  const input_email = document.getElementById("email");
+  const input_password = document.getElementById("password");
+  const input_confirm_password =
+    document.getElementById("confirm-password").value;
+
+  const baseUrl = `http://localhost:8081/userPost`; // replace with your server's base URL
+
+  postBtn.addEventListener("click", postInfo);
+
+  async function postInfo(e) {
+    e.preventDefault();
+
+    let hasErrors = false;
+    let regex = /^[a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/;
+
+    // Check "firstName" field
+    if (!/^[a-zA-Z]{5,}$/.test(input_first_name.value)) {
+      hasErrors = true;
+      document.getElementById("first-nameError").innerHTML =
+        "First Name needs to have only letters and be at least 5 characters long.";
+    } else {
+      document.getElementById("first-nameError").innerHTML = "";
+    }
+
+    // Check "lastName" field
+    if (!/^[a-zA-Z]{7,}$/.test(input_last_name.value)) {
+      hasErrors = true;
+      document.getElementById("last-nameError").innerHTML =
+        "Last name needs to have only letters and be at least 7 characters long.";
+    } else {
+      document.getElementById("last-nameError").innerHTML = "";
+    }
+
+    // Check "username" field
+    if (!/^[A-Z]{1}[a-zA-Z0-9]{4,}$/.test(input_username.value)) {
+      hasErrors = true;
+      document.getElementById("usernameError").innerHTML =
+        "Username needs 2 uppercase characters and also needs to be of 6 characters.";
+    } else {
+      document.getElementById("usernameError").innerHTML = "";
+    }
+
+    // Check "email" field
+    if (
+      !/^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/.test(
+        input_email.value
+      )
+    ) {
+      hasErrors = true;
+      document.getElementById("emailError").innerHTML =
+        "Email needs to be a valid email address.";
+    } else {
+      document.getElementById("emailError").innerHTML = "";
+    }
+
+    // Check "password" field
+    if (
+      !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(
+        input_password.value
+      )
+    ) {
+      hasErrors = true;
+      document.getElementById("passwordError").innerHTML =
+        "Password must contain at least 8 characters, an uppercase letter, 2 numbers, and a special character.";
+    } else {
+      document.getElementById("passwordError").innerHTML = "";
+    }
+
+    // Check "confirmPassword" field
+    if (input_password.value !== input_confirm_password) {
+      hasErrors = true;
+      document.getElementById("confirm-passwordError").innerHTML =
+        "The confirmation password does not match the password you entered.";
+    } else {
+      document.getElementById("confirm-passwordError").innerHTML = "";
+    }
+
+    if (!hasErrors) {
+      try {
+        const response = await fetch(baseUrl, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-allow-origin": "*",
+            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+            "Access-Control-Allow-Headers":
+              "Content-Type, Authorization, Content-Length, X-Requested-With",
+          },
+          body: JSON.stringify({
+            first_name: input_first_name.value,
+            last_name: input_last_name.value,
+            email: input_email.value,
+            username: input_username.value,
+            password: input_password.value,
+          }),
+        });
+
+        if (!response.ok) {
+          throw new Error("Error creating post");
+        }
+
+        const result = await response.json();
+
+        // Clear input fields
+        input_first_name.value = "";
+        input_last_name.value = "";
+        input_username.value = "";
+        input_email.value = "";
+        input_password.value = "";
+        input_confirm_password.value = "";
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
+</script>
+
+</html>
